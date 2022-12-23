@@ -15,19 +15,23 @@ let questionsArray = [
         question: "Hero of the Lion King?",
         choices: ["Simba", "Scar", "Peter Pan", "Captain Hook"],
         answer: "Simba"
+    },
+    {
+        question: "Which is NOT a Teenage Mutant Ninja Turtle?",
+        choices: ["Shredder","Michelangelo", "Leonardo", "Raphael"]
     }
 ]
 
 
-const Q1 = {
 
-}
 
 let secondsLeft = 5;
 
+timerText.textContent ='Timer: '+secondsLeft
+
 function startGame () {
     //timer
- 
+
     let timeInterval = setInterval(function() {
         secondsLeft -= 1;
         timerText.textContent ='Timer: ' +secondsLeft
@@ -49,18 +53,39 @@ function startGame () {
 
 }
 
+let qNum = 0
+
+
 function questionContent() {
-    questions.textContent = questionsArray[0].question
+
+
+    questions.textContent = questionsArray[qNum].question
+
+    // Writes the answers to buttons
     for (let i = 0; i < 4 ; i++) {
         let btnElement = document.createElement("button")
-    btnElement.textContent = questionsArray[0].choices[i]
-    buttonContainer.append(btnElement)
-    btnElement.addEventListener("click", questionAnswer)
+        btnElement.textContent = questionsArray[qNum].choices[i]
+        buttonContainer.append(btnElement)
+        btnElement.addEventListener("click", questionAnswer)
+        
+        
     }
 }
 
 function questionAnswer () {
-    console.log("user clicked a choice")
+    qNum += 1
+
+    
+
+
+    console.log(qNum)
+
+
+
+
+
+    questionContent()
+
 }
 
 
