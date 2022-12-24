@@ -18,14 +18,15 @@ let questionsArray = [
     },
     {
         question: "Which is NOT a Teenage Mutant Ninja Turtle?",
-        choices: ["Shredder","Michelangelo", "Leonardo", "Raphael"]
+        choices: ["Shredder","Michelangelo", "Leonardo", "Raphael"],
+        answer: "Shredder"
     }
 ]
 
 
 
 
-let secondsLeft = 5;
+let secondsLeft = 15;
 
 timerText.textContent ='Timer: '+secondsLeft
 
@@ -39,6 +40,7 @@ function startGame () {
         if (secondsLeft === 0) {
             clearInterval(timeInterval)
             console.log("Timer stopped")
+            return;
         } 
     }, 1000)
    //presented with question
@@ -46,39 +48,71 @@ function startGame () {
     questionContent()
 
 
-    console.log("this worked")
+    //console.log("this worked")
 
 
 
 
 }
 
-let qNum = 0
+let questionNum = 0
+
+let score = 0
+
+let userAnswer;
 
 
 function questionContent() {
-
-
-    questions.textContent = questionsArray[qNum].question
+    
+    questions.textContent = questionsArray[questionNum].question
+    buttonContainer.textContent = ``;
 
     // Writes the answers to buttons
     for (let i = 0; i < 4 ; i++) {
         let btnElement = document.createElement("button")
-        btnElement.textContent = questionsArray[qNum].choices[i]
+
+
+
+        btnElement.textContent = questionsArray[questionNum].choices[i]
         buttonContainer.append(btnElement)
+
         btnElement.addEventListener("click", questionAnswer)
-        
-        
+
     }
-}
 
-function questionAnswer () {
-    qNum += 1
-
+    //get user input with button
+    
+    
     
 
 
-    console.log(qNum)
+}
+
+
+function questionAnswer (e) {
+
+
+
+
+    userAnswer = e.target.innerText
+
+    if (userAnswer ===  questionsArray[questionNum].answer) {
+        score += 1
+        console.log("the score is "+score)
+    } else {
+        secondsLeft -= 10
+        console.log("the score is "+score)
+    }
+
+
+
+    questionNum += 1
+    console.log(userAnswer)
+    console.log(e)
+
+    
+
+    console.log("The questionNum is " +questionNum)
 
 
 
