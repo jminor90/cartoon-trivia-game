@@ -1,5 +1,79 @@
 * {
+
+    background-color: orange;
+    border: solid 2px
+
+}
+
+body * {
+
+    padding: 5px;
+    margin: 5px;
+}
+
+h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: blueviolet;
+    font-size: 200%;
+}
+
+
+.questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: purple;
+    color: white;
+    font-size: 150%;
+} 
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+}
+.startButton {
+    
+    background-color: red;
+}
+
+.startButton:hover {
+    background-color: green;
+}
+
+
+button {
+    font-weight: bolder;
+    font-size: 150%;
+    border-radius: 10px;
+    background-color: white;
+}
+
+button:hover {
+    background-color: aqua;
+}
+
+
+.timerText {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: yellow;
+    font-size: 125%;
+    font-weight: bold;
+}
+
+
+.scoreText {
+    display: flex;
+    justify-content: center;
+    font-size: 125%;
+    font-weight: bold;
+    color: white;
+    background-color: green;
+}
+
+ol, ul {
+    list-style: decimal;
 }
