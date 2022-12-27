@@ -5,6 +5,7 @@ let buttonContainer = document.querySelector(".buttonContainer");
 let scoreText = document.querySelector(".scoreText");
 let highScoreList = document.querySelector(".highScoreList");
 let feedbackText = document.querySelector(".feedbackText");
+let highScoresDisplayButton = document.querySelector(".highScoresDisplay");
 
 //Timer for the Game
 let secondsLeft = 30;
@@ -183,6 +184,25 @@ function questionAnswer (e) {
 }
 
 
+function highScoresDisplay () {
+    /*
+    if (highScores.name === undefined) {
+        console.log("highScores is undefined")
+        return;
+    } else {
+        document.getElementById("#1").innerHTML = highScores[0].name +" with a score of "+ highScores[0].score
+        document.getElementById("#2").innerHTML = highScores[1].name +" with a score of "+ highScores[1].score
+        document.getElementById("#3").innerHTML = highScores[2].name +" with a score of "+ highScores[2].score
+        document.getElementById("#4").innerHTML = highScores[3].name +" with a score of "+ highScores[3].score
+        document.getElementById("#5").innerHTML = highScores[4].name +" with a score of "+ highScores[4].score
+        
+    }
+    */
+    console.log("highScoreDisplay was clicked")
+}
+highScoresDisplayButton.addEventListener("click", highScoresDisplay)
+
+
 //Splices the highscore list in local storage to be only 5 (top 5 High Scores)
 highScores.splice(5);
 
@@ -193,12 +213,13 @@ scoreText.textContent = "Score: ";
 //writes High Score List on the screen
 //highScoreList.textContent = localStorage.getItem("highScores")
 
+/*
 document.getElementById("#1").innerHTML = highScores[0].name +" with a score of "+ highScores[0].score
 document.getElementById("#2").innerHTML = highScores[1].name +" with a score of "+ highScores[1].score
 document.getElementById("#3").innerHTML = highScores[2].name +" with a score of "+ highScores[2].score
 document.getElementById("#4").innerHTML = highScores[3].name +" with a score of "+ highScores[3].score
 document.getElementById("#5").innerHTML = highScores[4].name +" with a score of "+ highScores[4].score
-
+*/
 
 
 
