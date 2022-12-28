@@ -1,11 +1,20 @@
+:root {
+    --background-color:#C4EBC8 ;
+    --text-color: #DBCBD8;
+    --layer1-color:#2E294E;
+    --layer2-color:#011638 ;
+    --contrast-color:#26F0F1 ;
+}
+
+
 * {
 
-    background-color: orange;
+    background-color: var(--background-color);
 
 }
 
 body * {
-
+    
     padding: 5px;
     margin: 5px;
 }
@@ -14,8 +23,13 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: blueviolet;
+    background-color: var(--layer1-color);
+    color: var(--text-color);
     font-size: 200%;
+    margin-left: 2em;
+    margin-right: 2em;
+    border-radius: 10px;
+    border: solid var(--layer2-color);
 }
 
 
@@ -23,44 +37,61 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: purple;
+    background-color: var(--layer2-color);
     color: white;
     font-size: 150%;
-} 
+    margin-left: 4em;
+    margin-right: 4em;
+    border-radius: 10px;
+    border: solid var(--layer1-color);
+}
 
 .buttonContainer {
     display: flex;
     justify-content: space-between;
-    background-color: blue;
+
 }
+
 .startButton {
-    
-    background-color: red;
+    color: var(--text-color);
+    background-color: var(--layer2-color);
+    border: solid var(--contrast-color);
+    margin-left: 2em;
 }
 
 .startButton:hover {
-    background-color: green;
+    color: var(--layer1-color);
+    background-color: var(--contrast-color);
+    border: solid var(--text-color);
 }
 
+.startButton:active {
+    background-color: orange;
+}
 
 button {
+    color: var(--layer2-color);
     font-weight: bolder;
     font-size: 150%;
     border-radius: 10px;
-    background-color: white;
+    background-color: var(--text-color);
 }
 
 button:hover {
-    background-color: aqua;
+    background-color: var(--contrast-color);
 }
 
+button:active {
+    background-color: orange;
+}
 
 .timerText {
     display: flex;
     flex-direction: row-reverse;
-    background-color: yellow;
     font-size: 125%;
     font-weight: bold;
+    color: var(--layer2-color);
+    margin-right: 2em;
 }
 
 
@@ -70,7 +101,63 @@ button:hover {
     font-size: 125%;
     font-weight: bold;
     color: white;
-    background-color: green;
+    background-color: var(--layer2-color);
+    margin-left: 4em;
+    margin-right: 4em;
+    border-radius: 10px;
+    border: solid var(--layer1-color);
+}
+
+.feedbackText {
+    display: flex;
+    justify-content: center;
+    color: var(--layer2-color);
+    font-size: 125%;
+    font-weight: bold;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.highScoresDisplay {
+    color: var(--text-color);
+    background-color: var(--layer2-color);
+    border: solid var(--contrast-color);
+}
+
+.highScoresDisplay:hover {
+    color: var(--layer1-color);
+    background-color: var(--contrast-color);
+    border: solid var(--text-color);
+}
+
+.highScoresDisplay:active {
+    background-color: orange;
+}
+
+.highScoreList {
+    font-size: 115%;
+    font-weight: bold;
+    padding: 1em;
+    background-color: var(--contrast-color);
+    border: solid 2px;
+    border-color: var(--layer1-color);
+    color: var(--text-color);
+    border-radius: 10px;
+}
+
+.highScoreList * {
+    background-color: var(--text-color);
+    border: solid;
+    color: var(--layer2-color);
+    border-radius: 10px;
+}
+
+li {
+    color: orange;
 }
 
 ol, ul {

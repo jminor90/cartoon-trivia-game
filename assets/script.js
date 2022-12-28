@@ -193,21 +193,24 @@ function questionAnswer (e) {
 
 
 function highScoresDisplay () {
-
+    console.log(highScores.length)
+    console.log(highScores)
 
 //Splices the highscore list in local storage to be only 5 (top 5 High Scores)
 //still not working as intended at this time...a temporary fix is to change line 22 - replace highscores.length with 5, but still  saves in local storage. need to find a way to limit this..
 if (highScores.length >= 6) {
-    //highScores.pop()
-    highScores.splice(4,1);
-    console.log(highScores)
-
+    
+    //console.log(spliceHigh)
+    //highScores.splice(4,1);
+    highScores.splice(4, 1);
+    
+    console.log(highScores.length)
 }
 
 
     highScoreList.style.display = "block"
     //console.log(highScores)
-    console.log(highScores.length)
+    
 
     
     //writes High Score List on the screen
