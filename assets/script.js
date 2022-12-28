@@ -10,17 +10,18 @@ let highScoresDisplayButton = document.querySelector(".highScoresDisplay");
 //Timer for the Game
 let secondsLeft = 30;
 
+let finalSeconds = 0;
 let questionNum = 0;
-
 let score = 0;
 
 let userAnswer;
 let userName;
-let userScore;
 
-const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+//highScores will pull localStorage item of "highScores" otherwise will be an empty array
+let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 //console.log(highScores)
 
+// Questions for the game. Don't cheat! ;)
 let questionsArray = [
     {
         question: "Who lives in a pineapple under the sea?",
@@ -60,7 +61,7 @@ let questionsArray = [
 
 
 
-
+//Start Game function that occurs when "Start Game" button is clicked (event listener down below)
 function startGame () {
     
     //removes start button after being clicked.
@@ -72,11 +73,13 @@ function startGame () {
         secondsLeft -= 1;        
         console.log(secondsLeft);
 
+        //Runs questionContent function (displays the question on screen) and 
+        //Displays the timer on screen
         if (secondsLeft > 0) {
             questionContent();
             timerText.textContent ='Timer: ' +secondsLeft;
 
-
+        //once the timer reaches 0 will end the game.
         } else {
             clearInterval(timeInterval);
             timerText.textContent = "GAME OVER";
@@ -84,24 +87,27 @@ function startGame () {
             buttonContainer.textContent = ``;
             questions.textContent = "GAME OVER";
             
-            /* Attempting to do a "Total Score which will add secondsLeft + Score"
+            //Total Score which will add secondsLeft + Score
             let totalScore;
-            //if the SecondsLeft goes negative resets it to 0
-            if (secondsLeft < 0 ) {
-                secondsLeft = 0;
-            }
-            totalScore = score + secondsLeft
-            */
+            //if finalSeconds is less than 0 then just make it 0
+            if (finalSeconds < 0) finalSeconds = 0;
+            //users totalScore will be the final seconds left of the game the score (questions answered correctly)
+            totalScore = finalSeconds + score;
+            console.log(finalSeconds)
+            console.log(totalScore)
+            
 
             //End of game give score and ask for name input for High Score List
-            userAlert = alert("Your score is " +score+ " out of "+questionsArray.length+ " questions");
+            userAlert = alert("Your answered " +score+ " out of "+questionsArray.length+ " questions correct. With "+finalSeconds+" seconds left.");
             userName = prompt("Enter your name")
+            userAlert = alert(userName+" your Total Score (time left + correct answers) was "+totalScore)
 
             //Makes a finalScore Object in Local storage
             const finalScore = {
-                score: score,
+                score: totalScore,
                 name: userName
             }
+            
             //adds User name and Score to the Object
             highScores.push(finalScore);
             //Sorts the objects to Highest score to lowest
@@ -118,7 +124,7 @@ function startGame () {
 
 
 
-
+//this function displays the question and the answers in buttons
 function questionContent() {
 
     //resets buttonContainer text to nothing for each time a choice is selected
@@ -129,10 +135,12 @@ function questionContent() {
         questions.textContent = "NO MORE QUESTIONS";
 
         console.log("QuestionNum = QuestionsArray");
+        //takes the secondsLeft from the clock and adds them to a new variable finalSeconds which is used for the total score
+        finalSeconds = secondsLeft;
         secondsLeft = 1;
 
     } else {
-        // Writes the choices to the button Elements
+        // Writes the choices to the button Elements using for loop
         for (let i = 0; i < 4 ; i++) {
             let btnElement = document.createElement("button");
     
@@ -185,47 +193,59 @@ function questionAnswer (e) {
 
 
 function highScoresDisplay () {
-    /*
-    if (highScores.name === undefined) {
-        console.log("highScores is undefined")
-        return;
-    } else {
-        document.getElementById("#1").innerHTML = highScores[0].name +" with a score of "+ highScores[0].score
-        document.getElementById("#2").innerHTML = highScores[1].name +" with a score of "+ highScores[1].score
-        document.getElementById("#3").innerHTML = highScores[2].name +" with a score of "+ highScores[2].score
-        document.getElementById("#4").innerHTML = highScores[3].name +" with a score of "+ highScores[3].score
-        document.getElementById("#5").innerHTML = highScores[4].name +" with a score of "+ highScores[4].score
-        
-    }
-    */
-    console.log("highScoreDisplay was clicked")
-}
-highScoresDisplayButton.addEventListener("click", highScoresDisplay)
 
 
 //Splices the highscore list in local storage to be only 5 (top 5 High Scores)
-highScores.splice(5);
+//still not working as intended at this time...a temporary fix is to change line 22 - replace highscores.length with 5, but still  saves in local storage. need to find a way to limit this..
+if (highScores.length >= 6) {
+    //highScores.pop()
+    highScores.splice(4,1);
+    console.log(highScores)
+
+}
+
+
+    highScoreList.style.display = "block"
+    //console.log(highScores)
+    console.log(highScores.length)
+
+    
+    //writes High Score List on the screen
+    if (highScores.length > 0) {
+
+        //console.log(typeof highScores)
+        //console.log(localStorage.getItem("highScores"))
+
+        highScores = JSON.parse(localStorage.getItem("highScores")) 
+        for (i=0; i < highScores.length ; i+=1){
+        document.getElementById("#"+(i+1)).innerHTML = highScores[i].name +" with a score of "+ highScores[i].score
+        }
+    } else {
+        return;
+    }
+
+    console.log("highScoreDisplay was clicked")
+}
+
+
+
+
+
+
 
 //Writes text to the UI
 timerText.textContent ='Timer: '+secondsLeft;
 scoreText.textContent = "Score: ";
-
-//writes High Score List on the screen
-//highScoreList.textContent = localStorage.getItem("highScores")
-
-/*
-document.getElementById("#1").innerHTML = highScores[0].name +" with a score of "+ highScores[0].score
-document.getElementById("#2").innerHTML = highScores[1].name +" with a score of "+ highScores[1].score
-document.getElementById("#3").innerHTML = highScores[2].name +" with a score of "+ highScores[2].score
-document.getElementById("#4").innerHTML = highScores[3].name +" with a score of "+ highScores[3].score
-document.getElementById("#5").innerHTML = highScores[4].name +" with a score of "+ highScores[4].score
-*/
-
+//hides HighScore list until button clicked
+highScoreList.style.display = "none"
 
 
 
 //listens for the StartButton to be clicked
 startButton.addEventListener("click", startGame);
+
+//displays high scores
+highScoresDisplayButton.addEventListener("click", highScoresDisplay)
 
 //confirming JS is linked
 console.log("Script is linked");
