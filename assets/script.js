@@ -337,8 +337,10 @@ if (highScores.length >= 6) {
     //console.log(spliceHigh)
     //highScores.splice(4,1);
     highScores.splice(4, 1);
+    localStorage.setItem("highScores", JSON.stringify(highScores))
     
     console.log(highScores.length)
+
 }
 
 
