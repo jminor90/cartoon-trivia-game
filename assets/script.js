@@ -6,9 +6,8 @@ let scoreText = document.querySelector(".scoreText");
 let highScoreList = document.querySelector(".highScoreList");
 let feedbackText = document.querySelector(".feedbackText");
 let highScoresDisplayButton = document.querySelector(".highScoresDisplay");
+let clearHighScoresButton = document.querySelector(".clearHighScores")
 
-//Timer for the Game
-let secondsLeft = 30;
 
 let finalSeconds = 0;
 let questionNum = 0;
@@ -25,29 +24,159 @@ let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 let questionsArray = [
     {
         question: "Who lives in a pineapple under the sea?",
-        choices: ["Spongebob", "Bart Simpson", "Tom & Jerry", "Ren & Stimpy"],
-        answer: "Spongebob"
+        choices: ["Spongebob Squarepants", "Bart Simpson", "Tom & Jerry", "Ren & Stimpy"],
+        answer: "Spongebob Squarepants"
     },
+
     {
         question: "Who is not a Power Puff Girl?",
-        choices: ["Princess", "Blossom", "Bubbles", "Buttercup"],
+        choices: ["Bubbles", "Blossom", "Princess", "Buttercup"],
         answer: "Princess",
     },
+
     {
-        question: "Which is NOT a Teenage Mutant Ninja Turtle?",
-        choices: ["Shredder","Michelangelo", "Leonardo", "Raphael"],
+        question: "Who is NOT a Teenage Mutant Ninja Turtle?",
+        choices: ["Donatello","Michelangelo", "Shredder", "Raphael"],
         answer: "Shredder"
     },
+
     {
         question: "What is Dexter's sister's name from Dexter's Laboratory",
         choices: ["DeeDee","Kiki","Mimi","LeeLee",],
         answer: "DeeDee",
     },
+
     {
         question: "Where do the Simpsons live?",
-        choices: ["Springfield","St. Louis","Columbia","Edwardsville",],
+        choices: ["Kansas City","St. Louis","Springfield","Edwardsville",],
         answer: "Springfield",
-    }
+    },
+
+    {
+        question: "What number did Lightning McQueen have?",
+        choices: ["75","80","65","95",],
+        answer: "95",
+    },
+
+	{
+        question: "Who is NOT from the cartoon DuckTales?",
+        choices: ["Louie","Stewey","Huey","Dewey",],
+        answer: "Stewey",
+    },
+
+    {
+        question: "What is the dog's name from Rocko's Modern Life?",
+        choices: ["Conky","Spunky","Lunky","Dunkey",],
+        answer: "Spunky",
+    },
+
+	{
+        question: "Who is NOT a Street Shark?",
+        choices: ["Streex","Ripster","Slammu","Jaws",],
+        answer: "Jaws",
+    },
+
+	{
+        question: "Who is Garfield's owner?",
+        choices: ["Jon Bon Jovi","Jon Stewart","Jon Arbuckle","Jon Davis",],
+        answer: "Jon Arbuckle",
+    },
+
+	{
+        question: "Who is Yogi Bear's friend?",
+        choices: ["Loo-Loo","Boo-Boo","Coo-Coo","Moo-Moo",],
+        answer: "Boo-Boo",
+    },
+
+	{
+        question: "What is the name of Mickey Mouse's Dog?",
+        choices: ["Mars","Pluto","Jupiter","Neptune",],
+        answer: "Pluto",
+    },
+
+	{
+        question: "What is the name of Nemo's dad from Finding Nemo",
+        choices: ["Marvin","Martin","Marlin","Melvin",],
+        answer: "Marlin",
+    },
+
+	{
+        question: "What is the name of the teacher from the Magic School Bus?",
+        choices: ["Ms. Drizzle","Ms. Wizzle","Ms. Rizzle","Ms. Frizzle",],
+        answer: "Ms. Frizzle",
+    },
+
+	{
+        question: "Who is Arnold's best friend in Hey Arnold!",
+        choices: ["Harold","Sid","Helga","Gerald",],
+        answer: "Gerald",
+    },
+
+	{
+        question: "What's the name of the Panther that discovered Mowgli in the Jungle Book?",
+        choices: ["Baloo","Bagheera","King Louie","Kaa",],
+        answer: "Bagheera",
+    },
+
+	{
+        question: "What is the name of Goofy's son from A Goofy Movie?",
+        choices: ["Max Goof","Jax Goof","Lax Goof","Tax Goof",],
+        answer: "Max Goof",
+    },
+
+	{
+        question: "In the Emperor's New Groove what is the name of Yzma's henchman?",
+        choices: ["Kronk","Kuzco","Pacha","Bucky",],
+        answer: "Kronk",
+    },
+
+	{
+        question: "What is the name of the antagonist from the Little Mermaid?",
+        choices: ["Alana","Sara","Ursula","Aquata",],
+        answer: "Ursula",
+    },
+
+	{
+        question: "What does Boo call Sully in the movie Monster's Inc?",
+        choices: ["Fluffy","Sully","Mike Wackowski","Kitty",],
+        answer: "Kitty",
+    },
+
+	{
+        question: "What does Pinky and the Brain do every night?",
+        choices: ["Play video games","Try to take over the world","Watch TV","Practice JavaScript",],
+        answer: "Try to take over the world",
+    },
+
+	{
+        question: "Who is NOT from the Animaniacs?",
+        choices: ["Yakko","Wakko","Dot","Spot",],
+        answer: "Spot",
+    },
+
+	{
+        question: "What is the name of Hank Hill's Laotian neighbor?",
+        choices: ["Khan","Kirk","Kane","Kai",],
+        answer: "Khan",
+    },
+
+	{
+        question: "Who is not part of the gang in Scooby-Doo?",
+        choices: ["Matthew","Daphne","Velma","Fred",],
+        answer: "Matthew",
+    },
+
+	{
+        question: "What is the name of the antagonist from Who Framed Roger Rabbit?",
+        choices: ["Judge Dredd","Judge Dead","Judge Demise","Judge Doom",],
+        answer: "Judge Doom",
+    },
+
+	{
+        question: "What's the name of the super hero from Ren & Stimpy?",
+        choices: ["Powdered Milk Man","Powdered Toast Man","The Crimson Chin","Major Glory",],
+        answer: "Powdered Toast Man",
+    },
 
 ];
 
@@ -59,6 +188,11 @@ let questionsArray = [
     }
 */
 
+
+//Timer for the Game | +5 seconds for every question in the Array
+let secondsLeft = (questionsArray.length * 5)
+
+console.log(secondsLeft)
 
 
 //Start Game function that occurs when "Start Game" button is clicked (event listener down below)
@@ -161,7 +295,7 @@ function questionAnswer (e) {
     //get user input with button
     userAnswer = e.target.innerText;
     
-    //if user answers correctly adds +1 to score, otherwise 10sec are removed from secondsLeft
+    //if user answers correctly adds +1 to score, otherwise 5sec are removed from secondsLeft
     if (userAnswer ===  questionsArray[questionNum].answer) {
         score += 1;
         scoreText.textContent = "Score: " +score;
@@ -169,7 +303,7 @@ function questionAnswer (e) {
         feedbackText.textContent = "Previous Choice: CORRECT"
         console.log("the score is "+score);
     } else {
-        secondsLeft -= 10;
+        secondsLeft -= 5;
 
         feedbackText.textContent = "Previous Choice: INCORRECT"
         console.log("the timer was reduced");
@@ -211,6 +345,7 @@ if (highScores.length >= 6) {
     highScoreList.style.display = "block"
     //console.log(highScores)
     
+    clearHighScoresButton.style.display = "block"
 
     
     //writes High Score List on the screen
@@ -230,8 +365,29 @@ if (highScores.length >= 6) {
     console.log("highScoreDisplay was clicked")
 }
 
+function clearHighScores () {
+    userAlert = confirm("Are you sure you want to clear the High Scores?");
+    
+    if (userAlert === true) {
+        window.location.reload();
+        highScores = JSON.parse(localStorage.removeItem("highScores"));
 
 
+        for (i=0; i < highScores.length ; i+=1){
+            document.getElementById("#"+(i+1)).innerHTML = ``;
+            }
+
+    } else {
+        return;
+    }
+
+}
+
+
+function hideScores () {
+    highScoreList.style.display ="none";
+    clearHighScoresButton.style.display = "none"
+}
 
 
 
@@ -242,6 +398,10 @@ scoreText.textContent = "Score: ";
 //hides HighScore list until button clicked
 highScoreList.style.display = "none"
 
+//hides Clear HighScore Button until HighScores is clicked
+clearHighScoresButton.style.display = "none"
+//clears High Scores
+clearHighScoresButton.addEventListener("click", clearHighScores)
 
 
 //listens for the StartButton to be clicked
@@ -249,6 +409,9 @@ startButton.addEventListener("click", startGame);
 
 //displays high scores
 highScoresDisplayButton.addEventListener("click", highScoresDisplay)
+//if user double clicks highscore button it will make it disappear
+highScoresDisplayButton.addEventListener("dblclick", hideScores)
+
 
 //confirming JS is linked
 console.log("Script is linked");
