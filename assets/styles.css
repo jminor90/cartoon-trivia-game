@@ -48,8 +48,9 @@ h1 {
 
 .buttonContainer {
     display: flex;
-    justify-content: space-between;
-
+    justify-content: space-around;
+    margin-left: 5em;
+    margin-right: 5em;
 }
 
 .startButton {

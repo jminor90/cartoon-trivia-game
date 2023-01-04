@@ -8,7 +8,6 @@ let feedbackText = document.querySelector(".feedbackText");
 let highScoresDisplayButton = document.querySelector(".highScoresDisplay");
 let clearHighScoresButton = document.querySelector(".clearHighScores")
 
-
 let finalSeconds = 0;
 let questionNum = 0;
 let score = 0;
@@ -18,7 +17,7 @@ let userName;
 
 //highScores will pull localStorage item of "highScores" otherwise will be an empty array
 let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-//console.log(highScores)
+
 
 // Questions for the game. Don't cheat! ;)
 let questionsArray = [
@@ -192,7 +191,6 @@ let questionsArray = [
 //Timer for the Game | +5 seconds for every question in the Array
 let secondsLeft = (questionsArray.length * 5)
 
-console.log(secondsLeft)
 
 
 //Start Game function that occurs when "Start Game" button is clicked (event listener down below)
@@ -205,7 +203,6 @@ function startGame () {
     let timeInterval = setInterval(function() {
         
         secondsLeft -= 1;        
-        console.log(secondsLeft);
 
         //Runs questionContent function (displays the question on screen) and 
         //Displays the timer on screen
@@ -217,7 +214,6 @@ function startGame () {
         } else {
             clearInterval(timeInterval);
             timerText.textContent = "GAME OVER";
-            console.log("Timer stopped");
             buttonContainer.textContent = ``;
             questions.textContent = "GAME OVER";
             
@@ -227,10 +223,7 @@ function startGame () {
             if (finalSeconds < 0) finalSeconds = 0;
             //users totalScore will be the final seconds left of the game the score (questions answered correctly)
             totalScore = finalSeconds + score;
-            console.log(finalSeconds)
-            console.log(totalScore)
             
-
             //End of game give score and ask for name input for High Score List
             userAlert = alert("Your answered " +score+ " out of "+questionsArray.length+ " questions correct. With "+finalSeconds+" seconds left.");
             userName = prompt("Enter your name")
@@ -248,7 +241,6 @@ function startGame () {
             highScores.sort((a,b) => b.score - a.score);
             //adds most recent user to local storage (but only top 5 are displayed on the page)
             localStorage.setItem("highScores", JSON.stringify(highScores))
-            console.log(highScores)
             
         }
     }, 1000);
@@ -268,7 +260,6 @@ function questionContent() {
     if (questionNum === questionsArray.length) {
         questions.textContent = "NO MORE QUESTIONS";
 
-        console.log("QuestionNum = QuestionsArray");
         //takes the secondsLeft from the clock and adds them to a new variable finalSeconds which is used for the total score
         finalSeconds = secondsLeft;
         secondsLeft = 1;
@@ -301,25 +292,15 @@ function questionAnswer (e) {
         scoreText.textContent = "Score: " +score;
 
         feedbackText.textContent = "Previous Choice: CORRECT"
-        console.log("the score is "+score);
+
     } else {
         secondsLeft -= 5;
 
         feedbackText.textContent = "Previous Choice: INCORRECT"
-        console.log("the timer was reduced");
-        console.log("the score is "+score);
-    }
 
+    }
     //regardless if user answers correctly - moves on to the next question 
     questionNum += 1;
-
-    //used to track where userAnswer is
-    console.log("The user chose " +userAnswer);
-    //console.log(e)
-    
-    //tracking what question number user is on
-    console.log("The questionNum is " +questionNum);
-
     //after user answers (right or wrong) moves onto next question
     questionContent();
 
@@ -327,34 +308,23 @@ function questionAnswer (e) {
 
 
 function highScoresDisplay () {
-    console.log(highScores.length)
-    console.log(highScores)
 
-//Splices the highscore list in local storage to be only 5 (top 5 High Scores)
-//still not working as intended at this time...a temporary fix is to change line 22 - replace highscores.length with 5, but still  saves in local storage. need to find a way to limit this..
+
+//Splices the highscore list in local storage to be only 5 (top 5 High Scores) and setItem to localStorage
 if (highScores.length >= 6) {
-    
-    //console.log(spliceHigh)
-    //highScores.splice(4,1);
     highScores.splice(4, 1);
     localStorage.setItem("highScores", JSON.stringify(highScores))
     
-    console.log(highScores.length)
-
 }
 
-
+    //displays highScorelist and the button as block display
     highScoreList.style.display = "block"
-    //console.log(highScores)
     
     clearHighScoresButton.style.display = "block"
 
     
     //writes High Score List on the screen
     if (highScores.length > 0) {
-
-        //console.log(typeof highScores)
-        //console.log(localStorage.getItem("highScores"))
 
         highScores = JSON.parse(localStorage.getItem("highScores")) 
         for (i=0; i < highScores.length ; i+=1){
@@ -364,9 +334,10 @@ if (highScores.length >= 6) {
         return;
     }
 
-    console.log("highScoreDisplay was clicked")
+
 }
 
+//Clears the HighScores list with an alert making sure the user wants to clear from local storage
 function clearHighScores () {
     userAlert = confirm("Are you sure you want to clear the High Scores?");
     
@@ -385,7 +356,7 @@ function clearHighScores () {
 
 }
 
-
+//Hides the highscores when highScoresDisplayButton is DoubleClicked
 function hideScores () {
     highScoreList.style.display ="none";
     clearHighScoresButton.style.display = "none"
@@ -415,5 +386,5 @@ highScoresDisplayButton.addEventListener("click", highScoresDisplay)
 highScoresDisplayButton.addEventListener("dblclick", hideScores)
 
 
-//confirming JS is linked
-console.log("Script is linked");
+//confirming JS is linked commented out for now
+//console.log("Script is linked");
