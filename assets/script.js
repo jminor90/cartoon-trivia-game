@@ -386,5 +386,5 @@ highScoresDisplayButton.addEventListener("click", highScoresDisplay)
 highScoresDisplayButton.addEventListener("dblclick", hideScores)
 
 
-//confirming JS is linked commented out for now
+//confirming JS is linked
 //console.log("Script is linked");
