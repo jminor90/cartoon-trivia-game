@@ -312,7 +312,7 @@ function highScoresDisplay () {
 
 //Splices the highscore list in local storage to be only 5 (top 5 High Scores) and setItem to localStorage
 if (highScores.length >= 6) {
-    highScores.splice(4, 1);
+    highScores.splice(5, 1);
     localStorage.setItem("highScores", JSON.stringify(highScores))
     
 }
