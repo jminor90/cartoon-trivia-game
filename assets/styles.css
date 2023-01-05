@@ -1,9 +1,9 @@
 :root {
-    --background-color:#C4EBC8 ;
-    --text-color: #DBCBD8;
-    --layer1-color:#2E294E;
-    --layer2-color:#011638 ;
-    --contrast-color:#26F0F1 ;
+    --background-color:#000000;
+    --text-color: #ffffff;
+    --layer1-color:#00c2ff;
+    --layer2-color:#ff00c2 ;
+    --contrast-color:#fad400 ;
 }
 
 
@@ -20,6 +20,8 @@ body * {
 }
 
 h1 {
+    font-family: 'Marck Script', cursive;
+    font-family: 'Rowdies', cursive;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,6 +36,8 @@ h1 {
 
 
 .questions {
+    font-family: 'Marck Script', cursive;
+    font-family: 'Rowdies', cursive;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,6 +51,7 @@ h1 {
 }
 
 .buttonContainer {
+    font-family: 'Roboto Mono', monospace;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -55,6 +60,7 @@ h1 {
 }
 
 .startButton {
+    font-family: 'Roboto Mono', monospace;
     color: var(--text-color);
     background-color: var(--layer2-color);
     border: solid var(--contrast-color);
@@ -72,6 +78,7 @@ h1 {
 }
 
 button {
+    font-family: 'Roboto Mono', monospace;
     color: var(--layer2-color);
     font-weight: bolder;
     font-size: 150%;
@@ -90,6 +97,8 @@ button:active {
 }
 
 .timerText {
+    font-family: 'Marck Script', cursive;
+    font-family: 'Rowdies', cursive;
     display: flex;
     flex-direction: row-reverse;
     font-size: 125%;
@@ -100,6 +109,7 @@ button:active {
 
 
 .scoreText {
+    font-family: 'Roboto Mono', monospace;
     display: flex;
     justify-content: center;
     font-size: 125%;
@@ -113,6 +123,7 @@ button:active {
 }
 
 .feedbackText {
+    font-family: 'Roboto Mono', monospace;
     display: flex;
     justify-content: center;
     color: var(--layer2-color);
@@ -127,6 +138,7 @@ aside {
 }
 
 .highScoresDisplay {
+    font-family: 'Roboto Mono', monospace;
     color: var(--text-color);
     background-color: var(--layer2-color);
     border: solid var(--contrast-color);
@@ -143,6 +155,8 @@ aside {
 }
 
 .highScoreList {
+    font-family: 'Marck Script', cursive;
+    font-family: 'Rowdies', cursive;
     font-size: 115%;
     font-weight: bold;
     padding: 1em;
@@ -156,7 +170,7 @@ aside {
 .highScoreList * {
     background-color: var(--text-color);
     border: solid;
-    color: var(--layer2-color);
+    color: var(--background-color);
     border-radius: 10px;
 }
 
