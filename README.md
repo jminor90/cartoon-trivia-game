@@ -1,5 +1,6 @@
 # cartoon-trivia-game 
 A timed trivia game based on some of my favorite cartoons
+
 Made in Javascript by jminor90
 
 ## Description
@@ -8,12 +9,19 @@ A short trivia application with a timer and a high scores feature, that I made t
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+- Click the "Start" button to begin the game and the timer will begin to tick down.
+- Questions with 4 options will appear - click the choice you think best answers the question.
+- Each question answered correctly will add +1 to the score. Any question answered incorrectly will have 5 seconds reduced from the timer.
+- Once all available questions are answered or the timer reaches 0 the game will end.
+- Your final score is determined by how many questions you answered correctly and the remainding time
+- The application will prompt you for your name for the high scores list
+- Click the "Highscores List" to view the top 5 high scores (saved in Local Storage)
+- Double Click "Highscore List" to hide it from view
+- "Clear High Scores" button will clear scores from local storage
 
 ![Screenshot of Application](assets/images/trivia-game.png)
 
+[Click Here to Open](https://jminor90.github.io/cartoon-trivia-game/)
 
 ## Credits
 
